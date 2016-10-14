@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Javascript的性能优化：加载和执行 | OstrichAlgorithm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前头无论JavaScript代码是内嵌还是在外链，页面的下载和渲染都必须停下来等待脚本执行完成。JavaScript 执行过程耗时越久，浏览器等待响应用户输入的时间就越长。浏览器在下载和执行脚本时出现阻塞的原因在于，脚本可能会改变页面或 JavaScript 的命名空间，它们对后面页面内容造成影响。
+加载位置通常都看到把&amp;lt;script&amp;gt;和&amp;lt;link&amp;gt;标签放在&amp;lt;head">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript的性能优化：加载和执行">
+<meta property="og:url" content="http://ostrichalgorithm.github.io/2014/12/14/Javascript的性能优化：加载和执行/index.html">
+<meta property="og:site_name" content="OstrichAlgorithm">
+<meta property="og:description" content="前头无论JavaScript代码是内嵌还是在外链，页面的下载和渲染都必须停下来等待脚本执行完成。JavaScript 执行过程耗时越久，浏览器等待响应用户输入的时间就越长。浏览器在下载和执行脚本时出现阻塞的原因在于，脚本可能会改变页面或 JavaScript 的命名空间，它们对后面页面内容造成影响。
+加载位置通常都看到把&amp;lt;script&amp;gt;和&amp;lt;link&amp;gt;标签放在&amp;lt;head">
+<meta property="og:updated_time" content="2014-12-18T04:09:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript的性能优化：加载和执行">
+<meta name="twitter:description" content="前头无论JavaScript代码是内嵌还是在外链，页面的下载和渲染都必须停下来等待脚本执行完成。JavaScript 执行过程耗时越久，浏览器等待响应用户输入的时间就越长。浏览器在下载和执行脚本时出现阻塞的原因在于，脚本可能会改变页面或 JavaScript 的命名空间，它们对后面页面内容造成影响。
+加载位置通常都看到把&amp;lt;script&amp;gt;和&amp;lt;link&amp;gt;标签放在&amp;lt;head">
+  
+    <link rel="alternative" href="/atom.xml" title="OstrichAlgorithm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">rlong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/OstrichAlgorithm" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/2502508760" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASMR/" style="font-size: 10px;">ASMR</a> <a href="/tags/DouFM-extension/" style="font-size: 10px;">DouFM_extension</a> <a href="/tags/DouFm/" style="font-size: 10px;">DouFm</a> <a href="/tags/chrome扩展/" style="font-size: 10px;">chrome扩展</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/img/" style="font-size: 10px;">img</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/乐理/" style="font-size: 10px;">乐理</a> <a href="/tags/代码习惯/" style="font-size: 10px;">代码习惯</a> <a href="/tags/优化/" style="font-size: 15px;">优化</a> <a href="/tags/原创/" style="font-size: 15px;">原创</a> <a href="/tags/去广告/" style="font-size: 10px;">去广告</a> <a href="/tags/响应式设计/" style="font-size: 10px;">响应式设计</a> <a href="/tags/圆角/" style="font-size: 10px;">圆角</a> <a href="/tags/地址解析/" style="font-size: 10px;">地址解析</a> <a href="/tags/小调/" style="font-size: 10px;">小调</a> <a href="/tags/微信分享代码/" style="font-size: 10px;">微信分享代码</a> <a href="/tags/微信支付，爬过的坑/" style="font-size: 10px;">微信支付，爬过的坑</a> <a href="/tags/微信签名/" style="font-size: 10px;">微信签名</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/挖耳朵/" style="font-size: 10px;">挖耳朵</a> <a href="/tags/零碎/" style="font-size: 10px;">零碎</a> <a href="/tags/音效/" style="font-size: 10px;">音效</a> <a href="/tags/颅内高潮/" style="font-size: 10px;">颅内高潮</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">矫情先生，rlong，天行，老司机，OstrichAlgorithm</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">rlong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">rlong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/OstrichAlgorithm" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/2502508760" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Javascript的性能优化：加载和执行" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/14/Javascript的性能优化：加载和执行/" class="article-date">
+  	<time datetime="2014-12-14T12:11:32.000Z" itemprop="datePublished">2014-12-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript的性能优化：加载和执行
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前头"><a href="#前头" class="headerlink" title="前头"></a>前头</h1><p>无论JavaScript代码是内嵌还是在外链，页面的下载和渲染都必须停下来等待脚本执行完成。JavaScript 执行过程耗时越久，浏览器等待响应用户输入的时间就越长。浏览器在下载和执行脚本时出现阻塞的原因在于，脚本可能会改变页面或 JavaScript 的命名空间，它们对后面页面内容造成影响。</p>
+<h1 id="加载位置"><a href="#加载位置" class="headerlink" title="加载位置"></a>加载位置</h1><p>通常都看到把<code>&lt;script&gt;</code>和<code>&lt;link&gt;</code>标签放在<code>&lt;head&gt;</code>中，如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">   		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Source Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">   		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"script1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">   		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"script2.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">   		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"script3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">   		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"styles.css"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span> </div><div class="line">   		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>浏览器是个耿直的家伙，加载和解释都是线性的，所以外部引入的文件要依次加载，如果网络状况不好或逻辑比较复杂耗时会导致进度卡在其中，而无法使使页面及时的显示出来，造成不好的体验。</p>
+<p>外部引入的文件应该<strong>延迟加载</strong>，或者在文档的<strong>最后加载</strong></p>
+<h1 id="减少加载次数"><a href="#减少加载次数" class="headerlink" title="减少加载次数"></a>减少加载次数</h1><p>解析到外部引入的<code>&lt;script&gt;</code>标签时，浏览器会发起http请求去加载脚本，由于发起http请求会有一定延时，所以10个100kb脚本的加载速度肯定会比1个1000kb的脚本的加载速度要慢，所以减少外部加载次数可以加快加载速度。</p>
+<h1 id="无阻塞脚本"><a href="#无阻塞脚本" class="headerlink" title="无阻塞脚本"></a>无阻塞脚本</h1><p>哈哈，根据上面的叙述，那么为了减少http请求次数，就把所有的脚本合在一块加载吧。。。。如果遇到的是一个页游，那岂不是毙了。。超大的单一脚本加载和执行会阻塞这直肠子的单线程浏览器。</p>
+<p>其实没什么的，只是等window的onload后再加载脚本。</p>
+<h2 id="延迟加载脚本"><a href="#延迟加载脚本" class="headerlink" title="延迟加载脚本"></a>延迟加载脚本</h2><p><strong>defer</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"1.js"</span> <span class="attr">defer</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>带derfer的<code>&lt;script&gt;</code>标签无视所在位置，遇到后即开始加载，直到onload事件响应（DOM加载完成）是才会执行。它不会因执行而阻塞霸占，它是与其他资源文件并行加载的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">defer</span>&gt;</span><span class="actionscript"></span></div><div class="line">      alert(<span class="string">"defer"</span>);<span class="comment">//先加载，DOM加载完成后执行</span></div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="actionscript"></span></div><div class="line">      alert(<span class="string">"script"</span>);<span class="comment">//一路加载执行</span></div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//onload事件响应后执行</span></div><div class="line">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          alert(<span class="string">"load"</span>);</div><div class="line">      &#125;;</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>所以上面的执行顺序为，<strong>script</strong>，<strong>defer</strong>，<strong>load</strong></p>
+<h2 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">script </span>= document.createElement(<span class="string">"script"</span>)<span class="comment">;</span></div><div class="line">	<span class="keyword">script.type </span>= <span class="string">"text/javascript"</span><span class="comment">;</span></div><div class="line"> 	<span class="keyword">script.src </span>= <span class="string">"script1.js"</span><span class="comment">;</span></div><div class="line">  	document.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(<span class="keyword">script);</span></div></pre></td></tr></table></figure>
+<p>此方法，无论在何处启动下载，文件的下载和运行都不会阻塞其他页面处理过程</p>
+<p>可以用<code>readyState</code>和<code>load</code>来响应加载状况:<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">script.onload </span>= function()&#123;</div><div class="line">   	alert(<span class="string">"Script loaded!"</span>)<span class="comment">;</span></div><div class="line">&#125;<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="keyword">script.onreadystatechange </span>= function()&#123;</div><div class="line">    if (<span class="keyword">script.readyState </span>== <span class="string">"loaded"</span> <span class="title">||</span> <span class="keyword">script.readyState </span>== <span class="string">"complete"</span>)&#123;</div><div class="line">          <span class="keyword">script.onreadystatechange </span>= null<span class="comment">;</span></div><div class="line">          alert(<span class="string">"Script loaded."</span>)<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<h2 id="loadScript"><a href="#loadScript" class="headerlink" title="loadScript"></a>loadScript</h2><p>线性非阻塞的下载方法<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">loadScript(<span class="string">"script1.js"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">    loadScript(<span class="string">"script2.js"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        loadScript(<span class="string">"script3.js"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            alert(<span class="string">"All files are loaded!"</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="使用-XMLHttpRequest-XHR-对象"><a href="#使用-XMLHttpRequest-XHR-对象" class="headerlink" title="使用 XMLHttpRequest(XHR)对象"></a>使用 XMLHttpRequest(XHR)对象</h2><blockquote>
+<p>创建XMLHttpRequest<br>下载Script<br>注入Script</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">"get"</span>, <span class="string">"script1.js"</span>, <span class="literal">true</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">        <span class="keyword">if</span> (xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status == <span class="number">304</span>)&#123;</div><div class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement (<span class="string">"script"</span>);</div><div class="line">            script.type = <span class="string">"text/javascript"</span>;</div><div class="line">            script.text = xhr.responseText;</div><div class="line">            <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">xhr.send(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
+<p>优点类似于上面所述，但是存在<strong>跨域问题</strong></p>
+<h1 id="参考copy资料"><a href="#参考copy资料" class="headerlink" title="参考copy资料"></a>参考copy资料</h1><p><a href="http://www.ibm.com/developerworks/cn/web/1308_caiys_jsload/index.html" title="JavaScript 的性能优化：加载和执行" target="_blank" rel="external">JavaScript 的性能优化：加载和执行</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/29/Javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Javascript
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/28/border-radius/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">border-radius</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Javascript的性能优化：加载和执行" data-title="Javascript的性能优化：加载和执行" data-url="http://ostrichalgorithm.github.io/2014/12/14/Javascript的性能优化：加载和执行/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 rlong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

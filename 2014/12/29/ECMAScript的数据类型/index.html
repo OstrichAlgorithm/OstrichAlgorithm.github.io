@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ECMAScript的基本数据类型 | OstrichAlgorithm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数据类型EMCAScript的数据类型：
+
+
+Undefined
+Null
+Boolean
+String
+Number
+Object
+
+
+Undefined类型此类型只有唯一值:undefined。1234567var un_1;alert(un_1==undefined);//truevar un_2 = undefined;alert(un_2==undefined);//true//var">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript的基本数据类型">
+<meta property="og:url" content="http://ostrichalgorithm.github.io/2014/12/29/ECMAScript的数据类型/index.html">
+<meta property="og:site_name" content="OstrichAlgorithm">
+<meta property="og:description" content="数据类型EMCAScript的数据类型：
+
+
+Undefined
+Null
+Boolean
+String
+Number
+Object
+
+
+Undefined类型此类型只有唯一值:undefined。1234567var un_1;alert(un_1==undefined);//truevar un_2 = undefined;alert(un_2==undefined);//true//var">
+<meta property="og:updated_time" content="2014-12-30T01:38:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript的基本数据类型">
+<meta name="twitter:description" content="数据类型EMCAScript的数据类型：
+
+
+Undefined
+Null
+Boolean
+String
+Number
+Object
+
+
+Undefined类型此类型只有唯一值:undefined。1234567var un_1;alert(un_1==undefined);//truevar un_2 = undefined;alert(un_2==undefined);//true//var">
+  
+    <link rel="alternative" href="/atom.xml" title="OstrichAlgorithm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">rlong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/OstrichAlgorithm" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/2502508760" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASMR/" style="font-size: 10px;">ASMR</a> <a href="/tags/DouFM-extension/" style="font-size: 10px;">DouFM_extension</a> <a href="/tags/DouFm/" style="font-size: 10px;">DouFm</a> <a href="/tags/chrome扩展/" style="font-size: 10px;">chrome扩展</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/img/" style="font-size: 10px;">img</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/tip/" style="font-size: 10px;">tip</a> <a href="/tags/乐理/" style="font-size: 10px;">乐理</a> <a href="/tags/代码习惯/" style="font-size: 10px;">代码习惯</a> <a href="/tags/优化/" style="font-size: 15px;">优化</a> <a href="/tags/原创/" style="font-size: 15px;">原创</a> <a href="/tags/去广告/" style="font-size: 10px;">去广告</a> <a href="/tags/响应式设计/" style="font-size: 10px;">响应式设计</a> <a href="/tags/圆角/" style="font-size: 10px;">圆角</a> <a href="/tags/地址解析/" style="font-size: 10px;">地址解析</a> <a href="/tags/小调/" style="font-size: 10px;">小调</a> <a href="/tags/微信分享代码/" style="font-size: 10px;">微信分享代码</a> <a href="/tags/微信支付，爬过的坑/" style="font-size: 10px;">微信支付，爬过的坑</a> <a href="/tags/微信签名/" style="font-size: 10px;">微信签名</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/挖耳朵/" style="font-size: 10px;">挖耳朵</a> <a href="/tags/零碎/" style="font-size: 10px;">零碎</a> <a href="/tags/音效/" style="font-size: 10px;">音效</a> <a href="/tags/颅内高潮/" style="font-size: 10px;">颅内高潮</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">矫情先生，rlong，天行，老司机，OstrichAlgorithm</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">rlong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">rlong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/OstrichAlgorithm" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/2502508760" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-ECMAScript的数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/29/ECMAScript的数据类型/" class="article-date">
+  	<time datetime="2014-12-29T15:17:00.000Z" itemprop="datePublished">2014-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ECMAScript的基本数据类型
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p><strong>EMCAScript</strong>的数据类型：</p>
+<blockquote>
+<ul>
+<li>Undefined</li>
+<li>Null</li>
+<li>Boolean</li>
+<li>String</li>
+<li>Number</li>
+<li>Object</li>
+</ul>
+</blockquote>
+<h1 id="Undefined类型"><a href="#Undefined类型" class="headerlink" title="Undefined类型"></a>Undefined类型</h1><p>此类型只有唯一值:undefined。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> un_1;</div><div class="line">alert(un_1==<span class="literal">undefined</span>);<span class="comment">//true</span></div><div class="line"><span class="keyword">var</span> un_2 = <span class="literal">undefined</span>;</div><div class="line">alert(un_2==<span class="literal">undefined</span>);<span class="comment">//true</span></div><div class="line"><span class="comment">//var un_3; 未定义</span></div><div class="line">alert(<span class="keyword">typeof</span> un_3);<span class="comment">//undefined</span></div><div class="line">alert(un_3);<span class="comment">//错误</span></div></pre></td></tr></table></figure></p>
+<p><button onclick="un();">运行代码</button></p>
+<script>
+    function un(){
+        var un_1;
+        alert(un_1==undefined);//true
+        var un_2 = undefined;
+        alert(un_2==undefined);//true
+
+        //var un_3;
+        alert(typeof un_3);//undefined
+        alert(un_3);//错误
+    }
+</script>
+
+<h1 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h1><p>Null类型只有一个值：null。空对象指针。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nu_1=<span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> nu_1);<span class="comment">//Object</span></div><div class="line">alert(<span class="literal">null</span> == <span class="literal">undefined</span>);<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p><button onclick="nu();">运行代码</button></p>
+<script>
+    function nu(){
+        var nu_1=null;
+        alert(typeof nu_1);//Object
+        alert(null == undefined);//true
+    }
+</script>
+
+<h1 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h1><p>显而易见的true和false。</p>
+<p>任何类型可以和从Boolean()转化为boolean类型。</p>
+<h1 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h1><h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num_1 = <span class="number">1</span>;<span class="comment">//十进制</span></div><div class="line"><span class="keyword">var</span> num_2 = <span class="number">04</span>;<span class="comment">//八进制，首位为0</span></div><div class="line"><span class="keyword">var</span> num_3 = <span class="number">0xA</span>;<span class="comment">//十六进制</span></div></pre></td></tr></table></figure>
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var float<span class="symbol">Num_1</span> =<span class="number">1.1</span>;<span class="comment">//浮点数</span></div><div class="line">var float<span class="symbol">Num_2</span> = <span class="number">1.</span>;<span class="comment">//整数</span></div><div class="line">var float<span class="symbol">Num_3</span> =<span class="number">1.0</span>;<span class="comment">//整数</span></div><div class="line">var float<span class="symbol">Num_4</span> = <span class="number">3.1415</span>e<span class="number">4</span><span class="comment">//</span></div><div class="line">var a = <span class="number">0.1</span>;</div><div class="line">var b = <span class="number">0.2</span>;</div><div class="line"><span class="comment">//IEEE754计算浮点数时的通病</span></div><div class="line"><span class="keyword">if</span> <span class="comment">(a+b!=0.3)</span>&#123;</div><div class="line">	alert<span class="comment">("a+b!=0.3")</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><button onclick="fNum();">运行代码</button></p>
+<script>
+    function fNum(){
+        var a = 0.1;
+        var b = 0.2;
+        if (a+b!=0.3){
+            alert("a+b!=0.3");
+        }
+    }
+</script>
+
+
+<h2 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h2><p>Number.MIN_VALUE,5e-324</p>
+<p>Number.MAX-VALUE,1.7976931348623157e+308</p>
+<p>超过范围则转化为特殊值Infinity表示，用户isFinite()检测</p>
+<h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><p>NaN,Not a Number<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">alert(<span class="name">NaN==NaN</span>)<span class="comment">;//false</span></div><div class="line">alert(<span class="name">isNaN</span>(<span class="name">NaN</span>))<span class="comment">;//true</span></div><div class="line">alert(<span class="name">isNaN</span>(<span class="number">10</span>))<span class="comment">;//false</span></div><div class="line">alert(<span class="name">isNaN</span>(<span class="string">"10"</span>))<span class="comment">;//false,转化为10</span></div><div class="line">alert(<span class="name">isNaN</span>(<span class="string">"LUCY"</span>))<span class="comment">;//	ture</span></div><div class="line">alert(<span class="name">isNaN</span>(<span class="name">true</span>))<span class="comment">;//false,转化为1</span></div></pre></td></tr></table></figure></p>
+<p><button onclick="na();">运行代码</button></p>
+<script>
+    function na(){
+        alert(NaN==NaN);//false
+        alert(isNaN(NaN));//true
+        alert(isNaN(10));//false
+        alert(isNaN("10"));//false,转化为10
+        alert(isNaN("LUCY"));//    ture
+        alert(isNaN(true));//false,转化为1
+    }
+</script>
+
+<h2 id="数值转化"><a href="#数值转化" class="headerlink" title="数值转化"></a>数值转化</h2><blockquote>
+<ul>
+<li>Number() 可转化任何类型</li>
+<li>ParseInt()</li>
+<li>ParseFloat()</li>
+</ul>
+</blockquote>
+<h1 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h1><p>。。。。。。</p>
+<h1 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h1><h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o_1 =<span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="keyword">var</span> o_2 = <span class="keyword">new</span> <span class="built_in">Object</span>;</div></pre></td></tr></table></figure>
+<h2 id="自带方法"><a href="#自带方法" class="headerlink" title="自带方法"></a>自带方法</h2><blockquote>
+<ul>
+<li>Constructor</li>
+<li>hasOwnProperty(propertyName)</li>
+<li>isPortotypeOf(object)</li>
+<li>propertyEnumerable(propertyName)</li>
+<li>toLocaleString()</li>
+<li>toString()</li>
+<li>valueOf()</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/02/围观视频网站地址/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          围观视频网站地址
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/29/Javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Javascript</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ECMAScript的数据类型" data-title="ECMAScript的基本数据类型" data-url="http://ostrichalgorithm.github.io/2014/12/29/ECMAScript的数据类型/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 rlong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
